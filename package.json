@@ -1,0 +1,26 @@
+{
+  "name": "porfolio",
+  "version": "1.0.0",
+  "description": "La idea es que este proyecto tome finalmente la forma de Portfolio, mi propio sitio, con entradas de blogs, con imagenes, un panel de administración para ir cargando mi contenido, juegos como el de la viborita o el game of live. Está hecho con base de datos en mongo, con posibilidad de anexionar una parte que tenga bbdd relacional. JavaScrip end to end, también la idea contempla la posibilidad de hacer test para el backend.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint \"**/*.{js,jsx}\"",
+      "format": "npm run prettier -- --write",
+      "prettier": "prettier \"**/*.{js,jsx,css,json}\"",
+        "validate":"npm run lint && npm run prettier -- --list-different"
+  },
+  "author": "Santiago Casanova",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.18.2",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^1.19.1"
+  }
+}
