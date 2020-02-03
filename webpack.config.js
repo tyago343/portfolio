@@ -1,5 +1,7 @@
 const path = require("path");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
+const nodeExternals = require("webpack-node-externals");
+
 module.exports = env => {
   return {
     entry: "./" + env.entry,
@@ -7,6 +9,14 @@ module.exports = env => {
       path: path.join(__dirname, env.outpath),
       filename: env.filename
     },
+    node: {
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: "empty"
+    },
+    target: "node",
+    externals: [nodeExternals()],
     module: {
       rules: [
         {

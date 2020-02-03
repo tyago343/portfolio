@@ -9,9 +9,11 @@
     "prettier": "prettier \"**/*.{js,jsx,css,json}\"",
     "validate": "npm run lint && npm run prettier -- --list-different",
     "webpack": "webpack",
-    "wpk:server": "npm run webpack -- --env.entry index.js --env.outpath server --env.filename server.js",
-    "wpk:front": "npm run webpack -- --env.entry src/app.js --env.outpath dist --env.filename bundle.js"
-
+    "wpk:server": "npm run webpack -- --env.entry index.js --env.outpath server --env.filename server.js --mode=production",
+    "wpk:front": "npm run webpack -- --env.entry src/app.js --env.outpath dist --env.filename bundle.js --mode=production",
+    "dev:wpk:server": "npm run webpack -- --env.entry index.js --env.outpath server --env.filename server.js --mode=development --watch",
+    "dev:wpk:front": "npm run webpack -- --env.entry src/app.js --env.outpath dist --env.filename bundle.js --mode=development --watch",
+    "nodemon": "nodemon server/server.js"
   },
   "author": "Santiago Casanova",
   "license": "ISC",
@@ -33,12 +35,19 @@
     "eslint-plugin-react": "^7.18.2",
     "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-livereload-plugin": "^2.2.0"
+    "webpack-livereload-plugin": "^2.2.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11",
+    "morgan": "^1.9.1",
     "path": "^0.12.7"
   }
 }
