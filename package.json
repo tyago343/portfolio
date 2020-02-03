@@ -5,13 +5,24 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint \"**/*.{js,jsx}\"",
-      "format": "npm run prettier -- --write",
-      "prettier": "prettier \"**/*.{js,jsx,css,json}\"",
-        "validate":"npm run lint && npm run prettier -- --list-different"
+    "format": "npm run prettier -- --write",
+    "prettier": "prettier \"**/*.{js,jsx,css,json}\"",
+    "validate": "npm run lint && npm run prettier -- --list-different",
+    "webpack": "webpack",
+    "wpk:server": "npm run webpack -- --env.entry index.js --env.outpath server --env.filename server.js",
+    "wpk:front": "npm run webpack -- --env.entry src/app.js --env.outpath dist --env.filename bundle.js"
+
   },
   "author": "Santiago Casanova",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-config-standard": "^14.1.0",
@@ -21,6 +32,13 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.18.2",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^1.19.1"
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.19.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-livereload-plugin": "^2.2.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
