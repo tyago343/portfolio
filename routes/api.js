@@ -1,5 +1,5 @@
 import express from "express";
-import user from "./user.js";
+import user from "./api/user.js";
 const router = express.Router();
 
 router.use("/user", user);
