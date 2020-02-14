@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     minlength: 6
   }
 });
-userSchema.virtual("password").set(function(password) {
+userSchema.virtual("_password").set(function(password) {
   this._password = password;
 });
 

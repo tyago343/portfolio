@@ -1,32 +1,56 @@
 const path = require("path");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
 const nodeExternals = require("webpack-node-externals");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = env => {
+  if (env.modo !== "front") {
+    return {
+      entry: "./backend/index.js",
+      output: {
+        path: path.join(__dirname, "server"),
+        filename: "server.js"
+      },
+      node: {
+        fs: "empty",
+        net: "empty",
+        tls: "empty",
+        dns: "empty"
+      },
+      target: "node",
+      externals: [nodeExternals()],
+      module: {
+        rules: [
+          {
+            use: {
+              loader: "babel-loader",
+              options: {
+                presets: ["@babel/preset-react"]
+              }
+            },
+            test: /\.js$/,
+            exclude: /node_modules/
+          }
+        ]
+      },
+      plugins: [new LiveReloadPlugin(), new CleanWebpackPlugin()]
+    };
+  }
   return {
-    entry: "./" + env.entry,
+    entry: "./frontend/src/App.js",
     output: {
-      path: path.join(__dirname, env.outpath),
-      filename: env.filename
+      filename: "bundle.js",
+      path: path.join(__dirname, "dist")
     },
-    node: {
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
+    devtool: "source-map",
+    resolve: {
+      extensions: [".js", ".jsx"]
     },
-    target: "node",
-    externals: [nodeExternals()],
     module: {
       rules: [
         {
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-react"]
-            }
-          },
-          test: /\.js$/,
+          test: /(\.js|\.jsx)$/,
+          loader: "babel-loader",
           exclude: /node_modules/
         },
         {
@@ -54,7 +78,6 @@ module.exports = env => {
           ]
         }
       ]
-    },
-    plugins: [new LiveReloadPlugin()]
+    }
   };
 };

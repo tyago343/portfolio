@@ -9,5 +9,6 @@ render(
     <BrowserRouter>
       <Main />
     </BrowserRouter>
-  </Provider>
+  </Provider>,
+  document.getElementById("root")
 );

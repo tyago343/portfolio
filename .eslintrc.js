@@ -4,14 +4,10 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard',
-    'prettier'
-  ],
+  extends: ["plugin:react/recommended", "standard", "prettier"],
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly"
   },
   parser: "babel-eslint",
   parserOptions: {
@@ -19,13 +15,10 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: "module"
   },
-  plugins: [
-    'react',
-    'prettier'
-  ],
+  plugins: ["react", "prettier"],
   rules: {
     "prettier/prettier": "error"
   }
-}
+};

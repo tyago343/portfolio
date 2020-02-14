@@ -65,12 +65,10 @@ export const updateOne = Model => async (req, res) => {
 };
 export const removeOne = Model => async (req, res) => {
   try {
-    const result = await Model.findOneAndRemove({
+    const result = await Model.findOneAndremove({
       createdBy: req.user._id,
       _id: req.params.id
-    })
-      .lean()
-      .exec();
+    });
     if (!result) {
       res.status(400).end();
     }
