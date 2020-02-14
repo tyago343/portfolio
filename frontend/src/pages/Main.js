@@ -1,10 +1,7 @@
 import React from "react";
+import Signup from "./Signup/index";
 
 const Main = () => {
-  return (
-    <div>
-      <section>Hola!</section>
-    </div>
-  );
+  return <Signup />;
 };
 export default Main;
