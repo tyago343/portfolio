@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
+import { connect } from "react-redux";
+import { crearUser } from "../../redux/sagas";
 
-const signupForm = () => {
+const signupForm = props => {
   const firstName = useInput("");
   const lastName = useInput("");
   const userName = useInput("");
   const email = useInput("");
   const password = useInput("");
+  const onSubmit = () => {
+    console.log();
+    props.onSubmit2({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      userName: userName.value,
+      email: email.value,
+      password: password.value
+    });
+  };
   return (
     <form>
       <Input
@@ -50,8 +62,15 @@ const signupForm = () => {
         onChange={password.onChange}
         value={password.value}
       />
+      <span onClick={onSubmit}>ss</span>
     </form>
   );
 };
 
-export default signupForm;
+const mapDispatchToProps = dispatch => ({
+  onSubmit2: user => {
+    dispatch(crearUser(user));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(signupForm);

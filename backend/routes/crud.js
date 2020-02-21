@@ -28,11 +28,9 @@ export const getMany = Model => async (req, res) => {
   }
 };
 export const createOne = Model => async (req, res) => {
-  const createdBy = req.user._id;
+  const createdBy = 1;
   try {
-    const result = await Model.create({ ...req.body, createdBy })
-      .lean()
-      .exec();
+    const result = await Model.create({ ...req.body, createdBy });
     if (!result) {
       res.status(400).end();
     }
