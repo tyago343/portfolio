@@ -4,18 +4,7 @@ import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { crearUser } from "../../redux/sagas";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.89);
-  border-radius: 3px;
-  padding: 70px 100px;
-`;
-const Button = styled.button``;
+import { Wrapper, Button } from "./style";
 const signupForm = props => {
   const firstName = useInput("");
   const lastName = useInput("");
@@ -74,9 +63,9 @@ const signupForm = props => {
           onChange={password.onChange}
           value={password.value}
         />
-        <button type="button" className="btn" onClick={onSubmit}>
+        <Button type="button" className="btn" onClick={onSubmit}>
           Enviar
-        </button>
+        </Button>
       </form>
     </Wrapper>
   );
