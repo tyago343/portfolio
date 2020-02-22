@@ -5,20 +5,36 @@ import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { crearUser } from "../../redux/sagas";
 import { Wrapper, Button } from "./style";
-const signupForm = props => {
-  const firstName = useInput("");
-  const lastName = useInput("");
-  const userName = useInput("");
-  const email = useInput("");
-  const password = useInput("");
+const signupPage = props => {
+  const fields = {
+    firstName: useInput(""),
+    lastName: useInput(""),
+    userName: useInput(""),
+    email: useInput(""),
+    password: useInput(""),
+    confirmPassword: useInput("")
+  };
+  const validateForm = () => {
+    return (
+      fields.userName.value.length > 0 &&
+      fields.email.value.length > 0 &&
+      fields.password.value.length > 0 &&
+      fields.password.value === fields.confirmPassword.value
+    );
+  };
+  const returnValues = fields => ({
+    firstName: fields.firstName.value,
+    lastName: fields.lastName.value,
+    userName: fields.userName.value,
+    email: fields.email.value,
+    password: fields.password.value
+  });
   const onSubmit = () => {
-    props.submitUser({
-      firstName: firstName.value,
-      lastName: lastName.value,
-      userName: userName.value,
-      email: email.value,
-      password: password.value
-    });
+    if (validateForm()) {
+      props.submitUser(returnValues(fields));
+    } else {
+      console.log("faltan campos amigo");
+    }
   };
   return (
     <Wrapper>
@@ -28,40 +44,48 @@ const signupForm = props => {
           name="firstName"
           label="Nombre"
           placeholder="Ingrese su nombre"
-          onChange={firstName.onChange}
-          value={firstName.value}
+          onChange={fields.firstName.onChange}
+          value={fields.firstName.value}
         />
         <Input
           type="text"
           name="lastName"
           label="Apellido"
           placeholder="Ingrese su apellido"
-          onChange={lastName.onChange}
-          value={lastName.value}
+          onChange={fields.lastName.onChange}
+          value={fields.lastName.value}
         />
         <Input
           type="text"
           name="userName"
           label="Usuario"
           placeholder="Ingrese un nombre de usuario"
-          onChange={userName.onChange}
-          value={userName.value}
+          onChange={fields.userName.onChange}
+          value={fields.userName.value}
         />
         <Input
           type="email"
           name="email"
           label="Correo electrónico"
           placeholder="Ingrese su correo electronico"
-          onChange={email.onChange}
-          value={email.value}
+          onChange={fields.email.onChange}
+          value={fields.email.value}
         />
         <Input
           type="password"
           name="password"
           label="Contraseña"
           placeholder="Ingrese una contraseña"
-          onChange={password.onChange}
-          value={password.value}
+          onChange={fields.password.onChange}
+          value={fields.password.value}
+        />
+        <Input
+          type="password"
+          name="confirmation-password"
+          label="Repita su contraseña"
+          placeholder="Repita su contraseña"
+          onChange={fields.confirmPassword.onChange}
+          value={fields.confirmPassword.value}
         />
         <Button type="button" className="btn" onClick={onSubmit}>
           Enviar
@@ -70,7 +94,7 @@ const signupForm = props => {
     </Wrapper>
   );
 };
-signupForm.propTypes = {
+signupPage.propTypes = {
   submitUser: propTypes.func
 };
 const mapDispatchToProps = dispatch => ({
@@ -79,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(signupForm);
+export default connect(null, mapDispatchToProps)(signupPage);

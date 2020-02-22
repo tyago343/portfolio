@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.89);
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   padding: 70px 100px;
 `;
