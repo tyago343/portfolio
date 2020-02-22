@@ -24,33 +24,34 @@ const userSchema = new mongoose.Schema({
     minlength: 6
   }
 });
-userSchema.virtual("_password").set(function(password) {
-  this._password = password;
-});
-
 userSchema.pre("save", function(next) {
-  const user = this;
-  if (user._password === undefined) {
+  if (!this.isModified("password")) {
     return next();
   }
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if (err) console.log(err);
-    bcrypt.hash(user._password, salt, function(err, hash) {
-      if (err) console.log(err);
-      user.hashed_password = hash;
-      next();
-    });
+
+  bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
+    if (err) {
+      return next(err);
+    }
+
+    this.password = hash;
+    next();
   });
 });
 
-userSchema.methods = {
-  comparePassword: function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
+userSchema.methods.checkPassword = function(password) {
+  const passwordHash = this.password;
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, passwordHash, (err, same) => {
+      if (err) {
+        return reject(err);
+      }
+
+      resolve(same);
     });
-  }
+  });
 };
+
 const UserModel = mongoose.model("user", userSchema);
 
 export default UserModel;
