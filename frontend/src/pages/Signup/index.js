@@ -3,35 +3,34 @@ import propTypes from "prop-types";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
-import { crearUser } from "../../redux/sagas";
+import { createUser } from "../../redux/sagas";
 import { Wrapper, Button, Form } from "./style";
 const SignupPage = props => {
-  const fields = {
-    firstName: useInput(""),
-    lastName: useInput(""),
-    userName: useInput(""),
-    email: useInput(""),
-    password: useInput(""),
-    confirmPassword: useInput("")
-  };
+  const firstName = useInput("");
+  const lastName = useInput("");
+  const userName = useInput("");
+  const email = useInput("");
+  const password = useInput("");
+  const confirmPassword = useInput("");
   const validateForm = () => {
     return (
-      fields.userName.value.length > 0 &&
-      fields.email.value.length > 0 &&
-      fields.password.value.length > 0 &&
-      fields.password.value === fields.confirmPassword.value
+      userName.value.length &&
+      email.value.length &&
+      password.value.length &&
+      password.value === confirmPassword.value
     );
   };
-  const returnValues = fields => ({
-    firstName: fields.firstName.value,
-    lastName: fields.lastName.value,
-    userName: fields.userName.value,
-    email: fields.email.value,
-    password: fields.password.value
+  const returnValues = () => ({
+    firstName: firstName.value,
+    lastName: lastName.value,
+    userName: userName.value,
+    email: email.value,
+    password: password.value
   });
   const onSubmit = () => {
     if (validateForm()) {
-      props.submitUser(returnValues(fields));
+      const formvalues = returnValues();
+      props.submitUser(formvalues);
     } else {
       console.log("faltan campos amigo");
     }
@@ -44,48 +43,48 @@ const SignupPage = props => {
           name="firstName"
           label="Nombre"
           placeholder="Ingrese su nombre"
-          onChange={fields.firstName.onChange}
-          value={fields.firstName.value}
+          onChange={firstName.onChange}
+          value={firstName.value}
         />
         <Input
           type="text"
           name="lastName"
           label="Apellido"
           placeholder="Ingrese su apellido"
-          onChange={fields.lastName.onChange}
-          value={fields.lastName.value}
+          onChange={lastName.onChange}
+          value={lastName.value}
         />
         <Input
           type="text"
           name="userName"
           label="Usuario"
           placeholder="Ingrese un nombre de usuario"
-          onChange={fields.userName.onChange}
-          value={fields.userName.value}
+          onChange={userName.onChange}
+          value={userName.value}
         />
         <Input
           type="email"
           name="email"
           label="Correo electrónico"
           placeholder="Ingrese su correo electronico"
-          onChange={fields.email.onChange}
-          value={fields.email.value}
+          onChange={email.onChange}
+          value={email.value}
         />
         <Input
           type="password"
           name="password"
           label="Contraseña"
           placeholder="Ingrese una contraseña"
-          onChange={fields.password.onChange}
-          value={fields.password.value}
+          onChange={password.onChange}
+          value={password.value}
         />
         <Input
           type="password"
           name="confirmation-password"
           label="Repita su contraseña"
           placeholder="Repita su contraseña"
-          onChange={fields.confirmPassword.onChange}
-          value={fields.confirmPassword.value}
+          onChange={confirmPassword.onChange}
+          value={confirmPassword.value}
         />
         <Button type="button" className="btn" onClick={onSubmit}>
           Enviar
@@ -98,9 +97,8 @@ SignupPage.propTypes = {
   submitUser: propTypes.func
 };
 const mapDispatchToProps = dispatch => ({
-  submitUser: user => {
-    dispatch(crearUser(user));
+  onCreateUser: user => {
+    dispatch(createUser(user));
   }
 });
-
 export default connect(null, mapDispatchToProps)(SignupPage);

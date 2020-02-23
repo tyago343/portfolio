@@ -16,7 +16,7 @@ app.use("/api", api);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve("public/index.html"));
 });
-app.listen(8080, () => {
+app.listen(3000, () => {
   try {
     connectDB();
     console.log("server listen on port 3000");
