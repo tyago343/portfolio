@@ -29,6 +29,7 @@ module.exports = env => {
               }
             },
             test: /\.js$/,
+
             exclude: /node_modules/
           }
         ]
@@ -74,6 +75,14 @@ module.exports = env => {
               options: {
                 sourceMap: true
               }
+            }
+          ]
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: "file-loader"
             }
           ]
         }

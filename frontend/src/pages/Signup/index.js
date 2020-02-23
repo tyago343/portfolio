@@ -4,8 +4,8 @@ import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { crearUser } from "../../redux/sagas";
-import { Wrapper, Button } from "./style";
-const signupPage = props => {
+import { Wrapper, Button, Form } from "./style";
+const SignupPage = props => {
   const fields = {
     firstName: useInput(""),
     lastName: useInput(""),
@@ -38,7 +38,7 @@ const signupPage = props => {
   };
   return (
     <Wrapper>
-      <form>
+      <Form>
         <Input
           type="text"
           name="firstName"
@@ -90,11 +90,11 @@ const signupPage = props => {
         <Button type="button" className="btn" onClick={onSubmit}>
           Enviar
         </Button>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
-signupPage.propTypes = {
+SignupPage.propTypes = {
   submitUser: propTypes.func
 };
 const mapDispatchToProps = dispatch => ({
@@ -103,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(signupPage);
+export default connect(null, mapDispatchToProps)(SignupPage);
