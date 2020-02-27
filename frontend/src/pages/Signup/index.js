@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions/user";
 import { Wrapper, Button, Form, H1 } from "./style";
+import { useHistory } from "react-router";
 const SignupPage = props => {
   const firstName = useInput("");
   const lastName = useInput("");
@@ -12,6 +13,14 @@ const SignupPage = props => {
   const email = useInput("");
   const password = useInput("");
   const confirmPassword = useInput("");
+  const history = useHistory();
+  useEffect(() => {
+    console.log(props.user);
+    if (Object.values(props.user).length) {
+      history.push("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.user]);
   const validateForm = () => {
     return (
       userName.value.length &&
@@ -95,11 +104,15 @@ const SignupPage = props => {
   );
 };
 SignupPage.propTypes = {
-  onCreateUser: propTypes.func
+  onCreateUser: propTypes.func,
+  user: propTypes.object
 };
 const mapDispatchToProps = dispatch => ({
   onCreateUser: user => {
     dispatch(createUser(user));
   }
 });
-export default connect(null, mapDispatchToProps)(SignupPage);
+const mapStateToProps = state => ({
+  user: state.user
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);
