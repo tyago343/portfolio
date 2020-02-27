@@ -15,9 +15,8 @@ const SignupPage = props => {
   const confirmPassword = useInput("");
   const history = useHistory();
   useEffect(() => {
-    console.log(props.user);
     if (Object.values(props.user).length) {
-      history.push("/login");
+      history.push("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.user]);

@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
-import { crearUser } from "../../redux/sagas";
 import { Wrapper, Button, Form, H1 } from "./style";
+import { loginUser } from "../../redux/actions/user";
+import { useHistory } from "react-router";
 const LoginPage = props => {
   const fields = {
     userName: useInput(""),
     password: useInput("")
   };
+  const history = useHistory();
+  useEffect(() => {
+    if (Object.values(props.user).length) {
+      history.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.user]);
   const validateForm = () => {
     return fields.userName.value.length > 0 && fields.password.value.length > 0;
   };
@@ -19,7 +27,7 @@ const LoginPage = props => {
   });
   const onSubmit = () => {
     if (validateForm()) {
-      props.submitUser(returnValues(fields));
+      props.submitLogin(returnValues(fields));
     } else {
       console.log("faltan campos amigo");
     }
@@ -52,12 +60,16 @@ const LoginPage = props => {
   );
 };
 LoginPage.propTypes = {
-  submitUser: propTypes.func
+  submitLogin: propTypes.func,
+  user: propTypes.object
 };
 const mapDispatchToProps = dispatch => ({
-  submitUser: user => {
-    dispatch(crearUser(user));
+  submitLogin: credentials => {
+    dispatch(loginUser(credentials));
   }
 });
+const mapStateToProps = state => ({
+  user: state.user
+});
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

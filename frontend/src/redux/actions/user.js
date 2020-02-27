@@ -8,3 +8,7 @@ export const userToReducer = user => ({
   type: userType.USER_TO_REDUCER,
   payload: user
 });
+export const loginUser = credentials => ({
+  type: userType.LOGIN_USER,
+  payload: credentials
+});

@@ -7,7 +7,7 @@ export const getOne = Model => async (req, res) => {
     if (!result) {
       res.status(400).end();
     }
-    res.status(200).json({ data: result });
+    res.status(200).json({ result });
   } catch (err) {
     console.log(err);
     res.status(400).end();
@@ -34,7 +34,7 @@ export const createOne = Model => async (req, res) => {
     if (!result) {
       res.status(400).end();
     }
-    res.status(201).json({ data: result });
+    res.status(201).json({ result });
   } catch (err) {
     console.log(err);
     res.status(400).end();
