@@ -3,8 +3,8 @@ import propTypes from "prop-types";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
-import { createUser } from "../../redux/sagas";
-import { Wrapper, Button, Form } from "./style";
+import { createUser } from "../../redux/actions/user";
+import { Wrapper, Button, Form, H1 } from "./style";
 const SignupPage = props => {
   const firstName = useInput("");
   const lastName = useInput("");
@@ -30,7 +30,7 @@ const SignupPage = props => {
   const onSubmit = () => {
     if (validateForm()) {
       const formvalues = returnValues();
-      props.submitUser(formvalues);
+      props.onCreateUser(formvalues);
     } else {
       console.log("faltan campos amigo");
     }
@@ -38,6 +38,7 @@ const SignupPage = props => {
   return (
     <Wrapper>
       <Form>
+        <H1>Registrate</H1>
         <Input
           type="text"
           name="firstName"
@@ -94,7 +95,7 @@ const SignupPage = props => {
   );
 };
 SignupPage.propTypes = {
-  submitUser: propTypes.func
+  onCreateUser: propTypes.func
 };
 const mapDispatchToProps = dispatch => ({
   onCreateUser: user => {

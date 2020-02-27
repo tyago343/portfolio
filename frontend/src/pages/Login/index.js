@@ -4,7 +4,7 @@ import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { crearUser } from "../../redux/sagas";
-import { Wrapper, Button } from "./style";
+import { Wrapper, Button, Form, H1 } from "./style";
 const LoginPage = props => {
   const fields = {
     userName: useInput(""),
@@ -26,7 +26,8 @@ const LoginPage = props => {
   };
   return (
     <Wrapper>
-      <form>
+      <Form>
+        <H1>Iniciar sesión</H1>
         <Input
           type="text"
           name="userName"
@@ -46,7 +47,7 @@ const LoginPage = props => {
         <Button type="button" className="btn" onClick={onSubmit}>
           Enviar
         </Button>
-      </form>
+      </Form>
     </Wrapper>
   );
 };

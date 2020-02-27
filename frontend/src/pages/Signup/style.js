@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  font-family: "Noto Sans", sans-serif;
 `;
 export const Button = styled.button`
   color: #fff;
@@ -30,4 +29,10 @@ export const Form = styled.form`
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   padding: 70px 100px;
+`;
+export const H1 = styled.h1`
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 35px;
+  text-align: center;
 `;
