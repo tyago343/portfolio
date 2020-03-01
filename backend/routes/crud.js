@@ -5,12 +5,14 @@ export const getOne = Model => async (req, res) => {
       .lean()
       .exec();
     if (!result) {
-      res.status(400).end();
+      res.status(400).json({ error: "No encontrado" });
     }
     res.status(200).json({ result });
   } catch (err) {
     console.log(err);
-    res.status(400).end();
+    res
+      .status(400)
+      .json({ error: "La consulta no pudo realizarse, intenta mas tarde " });
   }
 };
 export const getMany = Model => async (req, res) => {
@@ -19,12 +21,14 @@ export const getMany = Model => async (req, res) => {
       .lean()
       .exec();
     if (!result) {
-      res.status(400).end();
+      res.status(400).json({ error: "No hay nada aqui" });
     }
     res.status(200).json({ data: result });
   } catch (err) {
     console.log(err);
-    res.status(400).end();
+    res
+      .status(400)
+      .json({ error: "La consulta no pudo realizarse, intenta mas tarde" });
   }
 };
 export const createOne = Model => async (req, res) => {
@@ -32,12 +36,14 @@ export const createOne = Model => async (req, res) => {
   try {
     const result = await Model.create({ ...req.body, createdBy });
     if (!result) {
-      res.status(400).end();
+      res.status(400).json({ error: "No pudo ser creado" });
     }
     res.status(201).json({ result });
   } catch (err) {
     console.log(err);
-    res.status(400).end();
+    res
+      .status(400)
+      .json({ error: "La consulta no pudo realizarse, intenta mas tarde" });
   }
 };
 export const updateOne = Model => async (req, res) => {
@@ -53,12 +59,16 @@ export const updateOne = Model => async (req, res) => {
       .lean()
       .exec();
     if (!result) {
-      res.status(400).end();
+      res
+        .status(400)
+        .json({ error: "No pudo encontrarse o no se pudo actualizar" });
     }
     res.status(200).json({ data: result });
   } catch (err) {
     console.log(err);
-    res.status(400).end();
+    res
+      .status(400)
+      .json({ error: "La consulta no pudo realizarse, intenta mas tarde" });
   }
 };
 export const removeOne = Model => async (req, res) => {
@@ -68,12 +78,14 @@ export const removeOne = Model => async (req, res) => {
       _id: req.params.id
     });
     if (!result) {
-      res.status(400).end();
+      res.status(400).json({ error: "No se pudo eliminar" });
     }
     res.status(200).json({ data: result });
   } catch (err) {
     console.log(err);
-    res.status(400).end();
+    res
+      .status(400)
+      .json({ error: "La consulta no pudo realizarse, intenta mas tarde" });
   }
 };
 
