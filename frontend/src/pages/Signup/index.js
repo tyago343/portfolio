@@ -4,8 +4,9 @@ import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions/user";
-import { Wrapper, Button, Form, H1 } from "./style";
+import { Wrapper, Form, H1 } from "./style";
 import { useHistory } from "react-router";
+import Button from "../../components/Button/index";
 const SignupPage = props => {
   const firstName = useInput("");
   const lastName = useInput("");

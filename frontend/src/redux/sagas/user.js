@@ -8,7 +8,7 @@ export function* sagaCreateUser(action) {
     if (response) {
       yield put(userToReducer({ ...response.data }));
     } else {
-      console.log("sarasa");
+      return () => console.log("error");
     }
   } catch (e) {
     console.log(e);
@@ -22,7 +22,7 @@ export function* sagaLoginUser(action) {
     if (response) {
       yield put(userToReducer({ ...response.data }));
     } else {
-      console.log("sarasaLogin");
+      return () => console.log("El usuario y/o la contraseña son incorrectos");
     }
   } catch (e) {
     console.log(e);

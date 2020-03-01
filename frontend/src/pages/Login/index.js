@@ -3,9 +3,10 @@ import propTypes from "prop-types";
 import Input from "../../components/Input/index";
 import { useInput } from "../../components/Input/Input.hooks";
 import { connect } from "react-redux";
-import { Wrapper, Button, Form, H1 } from "./style";
+import { Wrapper, Form, H1 } from "./style";
 import { loginUser } from "../../redux/actions/user";
 import { useHistory } from "react-router";
+import Button from "../../components/Button/index";
 const LoginPage = props => {
   const fields = {
     userName: useInput(""),
