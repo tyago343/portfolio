@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Signup from "./Signup/index";
 import Login from "./Login/index";
+import Games from "./Games/index";
 
 const Main = () => {
   return (
@@ -11,6 +12,9 @@ const Main = () => {
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/games">
+        <Games />
       </Route>
     </Switch>
   );
