@@ -1,6 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { H2, Ul, Li } from "./style";
 
 const TicTacToe = props => {
-  return <div>Hola, TicTacToe</div>;
+  return (
+    <Fragment>
+      <H2>Bienvenido al TaTeTi</H2>
+      <Ul>
+        <Li></Li>
+      </Ul>
+    </Fragment>
+  );
 };
 export default TicTacToe;
