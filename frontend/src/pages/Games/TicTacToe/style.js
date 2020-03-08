@@ -4,5 +4,5 @@ export const H2 = styled.h2`
   color: #669921;
   text-align: center;
 `;
-export const Ul = styled.ul;
-export const Li = styled.li;
+export const Ul = styled.ul``;
+export const Li = styled.li``;
