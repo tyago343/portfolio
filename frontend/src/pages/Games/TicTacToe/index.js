@@ -16,6 +16,14 @@ const TicTacToe = props => {
       <H2>Bienvenido al TaTeTi</H2>
       <Ul>
         <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
       </Ul>
     </div>
   );
