@@ -5,18 +5,17 @@ const TicTacToe = props => {
   const [player, setPlayer] = useState(false);
   const handleClick = e => {
     if (player) {
-      e.target.text = "O";
       setPlayer(!player);
     } else {
-      e.target.text = "X";
       setPlayer(!player);
     }
   };
+
   return (
     <div>
       <H2>Bienvenido al TaTeTi</H2>
       <Ul>
-        <Li onClick={handleClick}>hola</Li>
+        <Li onClick={handleClick}>{player ? "O" : "X"}</Li>
       </Ul>
     </div>
   );
