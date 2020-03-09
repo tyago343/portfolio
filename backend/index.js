@@ -5,7 +5,6 @@ import api from "./routes/api";
 import path from "path";
 import connectDB from "./db/connection";
 const app = express();
-
 // middlewares;
 app.use(morgan("dev"));
 app.use(urlencoded({ extended: true }));
