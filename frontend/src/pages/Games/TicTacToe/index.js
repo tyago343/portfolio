@@ -12,6 +12,8 @@ const TicTacToe = props => {
       alert("juega otro lugar");
     }
     checkHorizontals();
+    checkVerticals();
+    checkOblicuals();
   };
   const checkHorizontals = () => {
     const fields = document.querySelectorAll("li");
@@ -20,19 +22,57 @@ const TicTacToe = props => {
       fields[0].innerText === fields[2].innerText &&
       fields[0].innerText !== ""
     ) {
-      alert("1ha ganado " + fields[0].innerText);
+      alert("ha ganado " + fields[0].innerText);
     } else if (
       fields[3].innerText === fields[4].innerText &&
       fields[3].innerText === fields[5].innerText &&
       fields[3].innerText !== ""
     ) {
-      alert("2ha ganado " + fields[3].innerText);
+      alert("ha ganado " + fields[3].innerText);
     } else if (
       fields[6].innerText === fields[7].innerText &&
       fields[6].innerText === fields[8].innerText &&
       fields[6].innerText !== ""
     ) {
-      alert("3ha ganado " + fields[6].innerText);
+      alert("ha ganado " + fields[6].innerText);
+    }
+  };
+  const checkVerticals = () => {
+    const fields = document.querySelectorAll("li");
+    if (
+      fields[0].innerText === fields[3].innerText &&
+      fields[0].innerText === fields[6].innerText &&
+      fields[0].innerText !== ""
+    ) {
+      alert("ha ganado " + fields[0].innerText);
+    } else if (
+      fields[1].innerText === fields[4].innerText &&
+      fields[1].innerText === fields[7].innerText &&
+      fields[1].innerText !== ""
+    ) {
+      alert("ha ganado " + fields[1].innerText);
+    } else if (
+      fields[2].innerText === fields[5].innerText &&
+      fields[2].innerText === fields[8].innerText &&
+      fields[2].innerText !== ""
+    ) {
+      alert("ha ganado " + fields[8].innerText);
+    }
+  };
+  const checkOblicuals = () => {
+    const fields = document.querySelectorAll("li");
+    if (
+      fields[0].innerText === fields[4].innerText &&
+      fields[0].innerText === fields[8].innerText &&
+      fields[0].innerText !== ""
+    ) {
+      alert("ha ganado " + fields[0].innerText);
+    } else if (
+      fields[2].innerText === fields[4].innerText &&
+      fields[2].innerText === fields[6].innerText &&
+      fields[2].innerText !== ""
+    ) {
+      alert("ha ganado " + fields[2].innerText);
     }
   };
   return (
