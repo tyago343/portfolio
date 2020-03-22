@@ -5,7 +5,7 @@ export const H2 = styled.h2`
   text-align: center;
 `;
 export const Ul = styled.ul`
-  width: 300px;
+  width: 310px;
   padding: 0;
   margin: auto;
   height: 300px;
