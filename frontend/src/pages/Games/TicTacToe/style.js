@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const H2 = styled.h2`
-  font-size: 25px;
+  font-size: 30px;
   color: #669921;
   text-align: center;
 `;
@@ -20,4 +20,11 @@ export const Li = styled.li`
   font-size: 35px;
   font-weight: 900;
   float: left;
+`;
+export const P = styled.p`
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: #669921;
+  text-decoration: underline;
 `;

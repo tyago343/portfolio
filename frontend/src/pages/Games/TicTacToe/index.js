@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { H2, Ul, Li } from "./style";
+import { H2, Ul, Li, P } from "./style";
 import { checkWinner } from "./utils";
 // true is O, false is X
 const TicTacToe = props => {
@@ -19,7 +19,7 @@ const TicTacToe = props => {
   return (
     <div>
       <H2>Bienvenido al TaTeTi</H2>
-      <p>{winner || ""}</p>
+      <P>{winner || ""}</P>
       <Ul>
         <Li data-index="1" data-status="free" onClick={handleClick}></Li>
         <Li data-index="2" data-status="free" onClick={handleClick}></Li>
