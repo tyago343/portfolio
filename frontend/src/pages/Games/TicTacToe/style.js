@@ -28,3 +28,14 @@ export const P = styled.p`
   color: #669921;
   text-decoration: underline;
 `;
+export const Span = styled.span`
+  width: 310px;
+  margin: auto;
+  padding: 15px;
+  color: #ffffff;
+  background-color: #f48024;
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+  box-sizing: border-box;
+`;

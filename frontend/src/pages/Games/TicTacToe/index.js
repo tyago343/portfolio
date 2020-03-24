@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { H2, Ul, Li, P } from "./style";
+import { H2, Ul, Li, P, Span } from "./style";
 import { checkWinner } from "./utils";
 // true is O, false is X
 const TicTacToe = props => {
@@ -25,6 +25,7 @@ const TicTacToe = props => {
       cell.innerHTML = "";
     });
     setturn(0);
+    setWinner("");
   };
   return (
     <div>
@@ -41,7 +42,7 @@ const TicTacToe = props => {
         <Li data-index="8" data-status="free" onClick={handleClick}></Li>
         <Li data-index="9" data-status="free" onClick={handleClick}></Li>
       </Ul>
-      <span onClick={resetButton}>Reiniciar Juego</span>
+      <Span onClick={resetButton}>Reiniciar Juego</Span>
     </div>
   );
 };
