@@ -59,11 +59,12 @@ const checkDiagonals = () => {
   }
 };
 
-export const checkWinner = () => {
+export const checkWinner = turn => {
   let result = checkHorizontals();
   if (result) return result;
   result = checkVerticals();
   if (result) return result;
   result = checkDiagonals();
   if (result) return result;
+  if (turn === 9) return "Hay un empate";
 };
