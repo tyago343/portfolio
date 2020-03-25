@@ -19,7 +19,6 @@ const TicTacToe = props => {
   };
   const resetButton = () => {
     const celdas = document.querySelectorAll("li");
-    console.log(celdas);
     celdas.forEach(cell => {
       cell.dataset.status = "free";
       cell.innerHTML = "";
