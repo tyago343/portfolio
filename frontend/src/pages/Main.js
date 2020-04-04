@@ -4,6 +4,7 @@ import Signup from "./Signup/index";
 import Login from "./Login/index";
 import NoMatch from "./NoMatch/index";
 import TicTacToe from "./Games/TicTacToe";
+import PhotoCam from "./Utilities/PhotoCam";
 
 const Main = () => {
   return (
@@ -14,6 +15,9 @@ const Main = () => {
       <Switch>
         <Route path="/signup">
           <Signup />
+        </Route>
+        <Route path="/pictures">
+          <PhotoCam />
         </Route>
         <Route path="/login">
           <Login />

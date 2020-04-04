@@ -1,20 +1,29 @@
-import React from "react";
-import Camera from "../../../components/Camera";
+import React, { useState } from "react";
+import Camera from "react-html5-camera-photo";
 
-const PhotoCam = () => {
+import ImagePreview from "./ImagePreview";
+
+function PhotoCam(props) {
+  const [dataUri, setDataUri] = useState("");
+
+  function handleTakePhotoAnimationDone(dataUri) {
+    console.log("takePhoto");
+    setDataUri(dataUri);
+  }
+
+  const isFullscreen = false;
   return (
     <div>
-      <Camera
-        ref={camera => {
-          this.camera = camera;
-        }}
-      />
-      <p>
-        Esta pagina tendrá una funcionalidad para sacarse fotos. Ahora es una
-        practica pero la intencion es que los usuarios se puedan sacar fotos de
-        perfil
-      </p>
+      {dataUri ? (
+        <ImagePreview dataUri={dataUri} isFullscreen={isFullscreen} />
+      ) : (
+        <Camera
+          onTakePhotoAnimationDone={handleTakePhotoAnimationDone}
+          isFullscreen={isFullscreen}
+        />
+      )}
     </div>
   );
-};
+}
+
 export default PhotoCam;
