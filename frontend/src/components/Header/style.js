@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Header = styled.header``;
-const Div = styled.div``;
-const Nav = styled.nav``;
+const HeaderWrapper = styled.header``;
+const LogoWrapper = styled.div``;
+const LegendWrapper = styled.div``;
+const MenuWrapper = styled.nav``;

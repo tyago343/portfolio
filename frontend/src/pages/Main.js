@@ -1,17 +1,16 @@
 import React, { Fragment } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Signup from "./Signup/index";
 import Login from "./Login/index";
 import NoMatch from "./NoMatch/index";
 import TicTacToe from "./Games/TicTacToe";
 import PhotoCam from "./Utilities/PhotoCam";
+import Header from "../components/Header";
 
 const Main = () => {
   return (
     <Fragment>
-      <Link to="/signup">Registro</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/games/tictac">TaTeTi</Link>
+      <Header />
       <Switch>
         <Route path="/signup">
           <Signup />
