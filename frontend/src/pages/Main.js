@@ -6,7 +6,6 @@ import NoMatch from "./NoMatch/index";
 import TicTacToe from "./Games/TicTacToe";
 import PhotoCam from "./Utilities/PhotoCam";
 import Header from "../components/Header";
-
 const Main = () => {
   return (
     <Fragment>
