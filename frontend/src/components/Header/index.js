@@ -4,7 +4,8 @@ import {
   HeaderWrapper,
   LogoWrapper,
   LegendWrapper,
-  MenuWrapper
+  MenuWrapper,
+  HamburguerBar
 } from "./style";
 
 const Header = () => {
@@ -19,12 +20,12 @@ const Header = () => {
         Aqui irá el nombre o la página en la que se está situado.
       </LegendWrapper>
       <MenuWrapper openMenu={openMenu} onClick={handleClick}>
+        <HamburguerBar></HamburguerBar>
+        <HamburguerBar></HamburguerBar>
+        <HamburguerBar></HamburguerBar>
         <Link to="/signup">Registro</Link>
         <Link to="/login">Login</Link>
         <Link to="/games/tictac">TaTeTi</Link>
-        <span></span>
-        <span></span>
-        <span></span>
       </MenuWrapper>
     </HeaderWrapper>
   );
