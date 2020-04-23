@@ -39,6 +39,7 @@ module.exports = env => {
   }
   return {
     entry: "./frontend/src/App.js",
+    performance: { hints: false },
     output: {
       filename: "bundle.js",
       path: path.join(__dirname, "dist")

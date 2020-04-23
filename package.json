@@ -15,7 +15,8 @@
     "dev:wpk:front": "npm run webpack -- --env.modo front --mode=development --watch",
     "nodemon": "nodemon server/server.js",
     "test": "jest",
-    "deploy:production": "npm run wpk:server && npm run wpk:front && npm run node server/server.js"
+
+    "deploy:production": "npm run wpk:server && npm run wpk:front &&  node server/server.js"
   },
   "author": "Santiago Casanova",
   "license": "ISC",
