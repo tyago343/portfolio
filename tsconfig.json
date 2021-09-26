@@ -21,10 +21,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "*": ["node_modules", "src/*"]
-    }
+      "*": ["*"]
+    },
+    "plugins": [
+      {
+          "transform": "@zerollup/ts-transform-paths",
+          "exclude": ["*"]
+      }
+  ]
   },
   "exclude": ["node_modules", "frontend"],
   "include": ["./src/**/*"]

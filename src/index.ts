@@ -3,7 +3,8 @@ import express, { Request, Response } from "express";
 import { createConnection } from "typeorm";
 import cors from "cors";
 import morgan from "morgan";
-
+import cookieParser from 'cookie-parser';
+import routes from 'routes/index'
 const PORT = process.env.PORT || 3001;
 
 // App
@@ -15,7 +16,8 @@ createConnection();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json())
-
+app.use(cookieParser())
+app.use(routes)
 app.get("/", (_req: Request, res: Response) => {
     res.send("Goodbay boy");
 });

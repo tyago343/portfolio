@@ -1,19 +1,19 @@
 {
-    "type": "postgress",
-    "host": "localhost",
+    "type": "postgres",
+    "host": "db",
     "port": 5432,
-    "username": "postgress",
+    "username": "postgres",
     "password": "password",
     "database": "portfolio",
     "synchronize": true,
-    "logging": false,
+    "logging": true,
     "entities": [
-       "src/db/entity/**/*.ts"
-    ],
-    "migrations": [
-       "src/migration/**/*.ts"
+      "dist/entity/*.js"
     ],
     "subscribers": [
-       "src/subscriber/**/*.ts"
+      "dist/subscriber/*.js"
+    ],
+    "migrations": [
+      "dist/migration/*.js"
     ]
  }
