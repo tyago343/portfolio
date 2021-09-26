@@ -51,7 +51,7 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
         getRepository(User).merge(user, req.body);
         const result = await getRepository(User).save(user);
         if (!result) {
-            return res.status(400).json({ error: "User cannot be found" })
+            return res.status(400).json({ error: "User cannot be saved" })
 
         }
         return res.status(200).json({ result: user });
