@@ -1,7 +1,12 @@
 import React from 'react';
-import Homepage from './Homepage';
+import { Route, Switch } from 'react-router-dom';
+import Admin from './admin';
+import Homepage from './pages/Homepage';
 
 const App: React.FC = () => {
-  return <Homepage />;
+  return <Switch>
+    <Route path="/admin"><Admin /></Route>
+    <Route path="/"><Homepage /></Route>
+  </Switch>;
 };
 export default App;

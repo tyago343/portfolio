@@ -22,3 +22,5 @@ const PostCreation: React.FC = () => {
     </form>
   );
 };
+
+export default PostCreation
