@@ -12,6 +12,11 @@ export class Post {
     title: string;
 
     @Column({
+        length: 300
+    })
+    subtitle: string;
+    
+    @Column({
         type: "text"
     })
     content: string;
