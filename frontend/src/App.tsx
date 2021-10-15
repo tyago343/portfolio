@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Admin from "./admin";
-import Homepage from "./pages/Homepage";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 
 const App: React.FC = () => {
   return (
     <Switch>
       <Route path="/admin">
-        <Admin />
+        <Dashboard />
       </Route>
       <Route path="/">
-        <Homepage />
+        <Home />
       </Route>
     </Switch>
   );

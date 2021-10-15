@@ -24,6 +24,9 @@ export class Post {
     @Column()
     image: string;
 
+    @Column()
+    enable: boolean;
+
     @ManyToOne(_type => User, author => author.posts)
     author: User
 }
