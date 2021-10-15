@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const PostCreation: React.FC = () => {
   return (
@@ -23,4 +23,4 @@ const PostCreation: React.FC = () => {
   );
 };
 
-export default PostCreation
+export default PostCreation;
