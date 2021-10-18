@@ -7,11 +7,13 @@ interface HttpHeaders {
   [key: string]: string;
 }
 class ApiBuilder {
-  private apiUrl: string | undefined;
+  public apiUrl: string | undefined;
   constructor() {
-    this.apiUrl = process.env.API_URL;
+    this.apiUrl = process.env.REACT_APP_API_URL;
+    console.log(process.env.REACT_APP_API_URL)
+    console.log(this.apiUrl)
   }
-  private async Client(
+  public async Client(
     url: string,
     requestParams: RequestInit
   ): Promise<any> {
@@ -44,7 +46,7 @@ class ApiBuilder {
     }
     return headers;
   }
-  private RequestBuilder(
+  public RequestBuilder(
     method: HttpMethods,
     options?: Options,
     body?: any,
@@ -70,7 +72,7 @@ class ApiBuilder {
       stringifiedOptions.length > 0 ? `?${stringifiedOptions}` : "";
     return { queryString, requestParams };
   }
-  private UrlBuilder(endpoint: string, queryString: string = ""): string {
+  public UrlBuilder(endpoint: string, queryString: string = ""): string {
     let formattedUrl: string = `${endpoint}`;
     if (queryString) {
       formattedUrl += `?${queryString}`;
