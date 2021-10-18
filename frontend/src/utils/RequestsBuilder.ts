@@ -6,8 +6,26 @@ interface Options {
 interface HttpHeaders {
   [key: string]: string;
 }
-class Api {
-  protected Client() {}
+class ApiBuilder {
+  private apiUrl: string | undefined;
+  constructor() {
+    this.apiUrl = process.env.API_URL;
+  }
+  private async Client(
+    url: string,
+    requestParams: RequestInit
+  ): Promise<any> {
+    return fetch(url, requestParams).then(async (response) => {
+      if (response.status === 401) {
+        return;
+      }
+      const data = await response;
+      if (response.ok) {
+        return await data.json();
+      }
+      return data;
+    });
+  }
   private NewHeaders(
     Accept: string,
     contentType?: string,
@@ -53,9 +71,12 @@ class Api {
     return { queryString, requestParams };
   }
   private UrlBuilder(endpoint: string, queryString: string = ""): string {
-      
-    return ""
+    let formattedUrl: string = `${endpoint}`;
+    if (queryString) {
+      formattedUrl += `?${queryString}`;
+    }
+    return formattedUrl;
   }
 }
 
-export default Api;
+export default ApiBuilder;
