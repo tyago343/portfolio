@@ -6,6 +6,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import routes from "routes/index";
 import helmet from "helmet";
+
 const PORT = process.env.PORT || 3001;
 
 // App
@@ -19,6 +20,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static(__dirname + "/public"));
 app.use(routes);
 app.get("/", (_req: Request, res: Response) => {
     res.send("Goodbay boy");

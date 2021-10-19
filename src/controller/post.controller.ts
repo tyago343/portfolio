@@ -48,7 +48,8 @@ export const getPostsByUser = async (req: Request, res: Response): Promise<Respo
 }
 export const createPost = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const post = await getRepository(Post).save(req.body);
+        console.log(req.file)
+        const post = await getRepository(Post).save({...req.body, image: req.file?.filename});
         if (!post) {
             return res.status(400).json({ error: "Post cannot be saved" })
         }

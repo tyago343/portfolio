@@ -6,15 +6,14 @@ const postApi: PostApi = new PostApi();
 const CreatePost = () => {
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
-    console.log(evt.target);
-    const {title, subtitle, content, image, enable } = evt.target.elements;
-    postApi.createPost({
-      title: title.value,
-      subtitle: subtitle.value,
-      content: content.value,
-      image: "sarasa por ahora", 
-      enable: enable.value
-    })
+    const { title, subtitle, content, image, enable } = evt.target.elements;
+    const data = new FormData();
+    data.append("title", title.value)
+    data.append("subtitle", subtitle.value)
+    data.append("content", content.value)
+    data.append("image", image.files[0])
+    data.append("enable", enable.value)
+    postApi.createPost(data)
   };
   return (
     <form onSubmit={handleSubmit}>
