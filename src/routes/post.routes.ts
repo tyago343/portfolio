@@ -13,7 +13,11 @@ import path from "path";
 export const diskStorage = multer.diskStorage({
     destination: path.join(__dirname, "../public/images"),
     filename: (_req, file, cb) => {
-      cb(null, `${Date.now()}-${file.originalname}`);
+      const today: Date = new Date();
+      const dd: string = String(today.getDate()).padStart(2, '0');
+      const mm: string = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy: string = String(today.getFullYear());
+      cb(null, `${dd}-${mm}-${yyyy}_${file.originalname}`);
     },
   });
   export const fileUpload = multer({
