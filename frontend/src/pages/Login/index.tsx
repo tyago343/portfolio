@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
-
+interface LocationState {
+  from: {
+    pathname: string;
+  };
+}
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const [loginError, setLoginError] = useState("");
+  const { login, user } = useAuth();
+  const history = useHistory();
+  const location = useLocation<LocationState>();
+  let { from } = location.state || { from: { pathname: "/admin" } };
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
     const { userName, password } = evt.currentTarget.elements;
     login({ userName: userName.value, password: password.value });
   };
+  useEffect(() => {
+    if(user) {
+      history.replace(from)
+    }
+  }, [user, from, history]);
   return (
     <main>
       <section>
@@ -22,6 +36,7 @@ const Login: React.FC = () => {
           </label>
           <button type="submit">Entrar</button>
         </form>
+        {loginError}
       </section>
     </main>
   );

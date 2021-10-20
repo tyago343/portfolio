@@ -23,7 +23,7 @@ const AuthContext = createContext<IAuthContext | null>(null);
 function AuthProvider(props: any) {
   const [user, setUser] = useState(null);
   const login = useCallback(
-    (form: UserLogin) => userService.login(form).then((user) => setUser(user)),
+    (form: UserLogin, cb) => userService.login(form).then((user) => setUser(user)),
     [setUser]
   );
   const logout = useCallback(() => setUser(null), [setUser]);
