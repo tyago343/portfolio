@@ -5,13 +5,13 @@ import { getRepository } from "typeorm";
 import { compare } from "bcryptjs";
 
 export const createAccessToken = (user: User) => {
-  return sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET!, {
+  return sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET!, {
     expiresIn: "15m",
   });
 };
 export const createRefreshToken = (user: User) => {
   return sign(
-    { userId: user.id, tokenVersion: user.tokenVersion },
+    { userId: user.id },
     process.env.REFRESH_TOKEN_SECRET!,
     {
       expiresIn: "1d",
@@ -26,6 +26,7 @@ export const sendRefreshToken = (res: Response, token: string) => {
 };
 export const userLogin = async (req: Request, res: Response) => {
   try {
+    console.log(req.body)
     const { userName, password } = req.body;
     if (!(userName && password)) {
       return res.status(400).json({ error: "Missing password or username" });
@@ -40,11 +41,10 @@ export const userLogin = async (req: Request, res: Response) => {
     if (!valid) {
       return res.status(401).json({ error: "invalid password" });
     }
-    sendRefreshToken(res, createAccessToken(user));
-    return {
+    return res.status(200).json({
       accessToken: createAccessToken(user),
       user,
-    };
+    });
   } catch (err) {
     console.log(err);
     return res
@@ -54,11 +54,12 @@ export const userLogin = async (req: Request, res: Response) => {
 };
 export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   const token = <string>req.headers["auth"];
-  let jwtPayload;
+  let jwtPayload:any;
   try {
-    jwtPayload = <any>verify(token, process.env.REFRESH_TOKEN_SECRET!);
+    jwtPayload = verify(token, process.env.REFRESH_TOKEN_SECRET!);
     res.locals.jwtPayload = jwtPayload;
   } catch (error) {
+    console.log(error)
     return res.status(401).json({ error: "user not authorized" });
   }
   const { userId, username } = jwtPayload;

@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
@@ -6,8 +6,20 @@ import React, {
   useState,
 } from "react";
 import UserApi, { UserLogin } from "../utils/UserRequestsApi";
+interface IUser {
+  name: string,
+  lastName: string,
+  userName: string,
+  password: string,
+  tokenVersion: number,
+}
+interface IAuthContext {
+  user: IUser,
+  login: (form: UserLogin) => void,
+  logout: () => void
+}
 const userService = new UserApi();
-const AuthContext = createContext(null);
+const AuthContext = createContext<IAuthContext | null>(null);
 function AuthProvider(props: any) {
   const [user, setUser] = useState(null);
   const login = useCallback(
@@ -20,7 +32,7 @@ function AuthProvider(props: any) {
 }
 function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (context === undefined || context === null) {
     throw new Error("useAuth cannot be used without an AuthProvider");
   }
   return context;
