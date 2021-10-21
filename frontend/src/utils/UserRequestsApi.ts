@@ -15,6 +15,7 @@ class UserApi extends ApiBuilder {
       },
     };
     const result = await super.Client(endpoint, requestParams);
+    console.log(result)
     return result;
   }
 }

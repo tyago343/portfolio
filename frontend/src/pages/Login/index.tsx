@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 interface LocationState {
@@ -7,19 +7,21 @@ interface LocationState {
   };
 }
 const Login: React.FC = () => {
-  const [loginError, setLoginError] = useState("");
-  const { login, user } = useAuth();
+  const { login, user, error } = useAuth();
   const history = useHistory();
   const location = useLocation<LocationState>();
   let { from } = location.state || { from: { pathname: "/admin" } };
-  const handleSubmit = (evt: any) => {
+  const handleSubmit = async (evt: any) => {
     evt.preventDefault();
     const { userName, password } = evt.currentTarget.elements;
-    login({ userName: userName.value, password: password.value });
+    login({
+      userName: userName.value,
+      password: password.value,
+    });
   };
   useEffect(() => {
-    if(user) {
-      history.replace(from)
+    if (user) {
+      history.replace(from);
     }
   }, [user, from, history]);
   return (
@@ -36,7 +38,7 @@ const Login: React.FC = () => {
           </label>
           <button type="submit">Entrar</button>
         </form>
-        {loginError}
+        {error}
       </section>
     </main>
   );

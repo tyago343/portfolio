@@ -8,14 +8,11 @@ class ApiBuilder {
     requestParams: any
   ): Promise<any> {
     return fetch(url, requestParams).then(async (response) => {
-      if (response.status === 401) {
-        return;
-      }
       const data = await response;
       if (response.ok) {
         return await data.json();
       }
-      return data;
+      return await data.json();
     });
   }
 }
